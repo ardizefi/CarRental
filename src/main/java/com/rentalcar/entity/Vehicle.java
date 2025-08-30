@@ -2,6 +2,7 @@ package com.rentalcar.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,12 +20,11 @@ import java.util.List;
         private Status status;
 
         @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
-        private List<Rental> rentals;
+        private List<Rental> rentals =new ArrayList<>();
 
-
-    public Vehicle (long id , String brand , String model , int year , double dailyRate , Status status){
+    public Vehicle(){}
+    public Vehicle ( String brand , String model , int year , double dailyRate , Status status){
         this.brand=brand;
-        this.id=id;
         this.model=model;
         this.year=year;
         this.dailyRate=dailyRate;

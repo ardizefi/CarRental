@@ -13,11 +13,11 @@ public class Payment {
     private double amount;
     private LocalDate paymentDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rental_id")
     private Rental rental;
-public Payment (Long id , double amount , LocalDate paymentDate ,Rental rental ){
-    this.id=id;
+
+    public Payment ( double amount , LocalDate paymentDate ,Rental rental ){
     this.amount=amount;
     this.paymentDate=paymentDate;
     this.rental=rental;

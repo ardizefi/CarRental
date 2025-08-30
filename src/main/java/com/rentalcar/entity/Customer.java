@@ -2,25 +2,26 @@ package com.rentalcar.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
+
     private String firstName ;
     private String lastName ;
     private String email;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Rental> rentals;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Rental> rentals  = new ArrayList<>();
+    public Customer(){
 
+    }
 
-    public Customer (long id , String firstName , String lastName ,String email){
-        this.id=id;
+    public Customer ( String firstName , String lastName ,String email){
         this.firstName=firstName;
         this.lastName=lastName;
         this.email=email;

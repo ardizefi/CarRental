@@ -4,6 +4,7 @@ package com.rentalcar.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,23 +16,23 @@ public class Rental {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
-    private List<Payment> payments;
-
-    public Rental(LocalDate startDate, LocalDate endDate, Customer customer, Vehicle vehicle, List<Payment> payments) {
+    private List<Payment> payments=new ArrayList<>();
+    public Rental(){}
+    public Rental(LocalDate startDate, LocalDate endDate, Customer customer, Vehicle vehicle) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.customer = customer;
         this.vehicle = vehicle;
-        this.payments = payments;
+
     }
 
     public Long getId() {
