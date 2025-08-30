@@ -1,5 +1,7 @@
 package com.rentalcar.entity;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -18,7 +20,8 @@ public Payment (Long id , double amount , LocalDate paymentDate ,Rental rental )
     this.id=id;
     this.amount=amount;
     this.paymentDate=paymentDate;
-    this.rental=rental
+    this.rental=rental;
+
 }
 
     public double getAmount() {
