@@ -15,6 +15,7 @@ import java.util.List;
         private String model;
         private int year;
         private double dailyRate;
+        private String targa;
 
         @Enumerated(EnumType.STRING)
         private Status status;
@@ -23,12 +24,13 @@ import java.util.List;
         private List<Rental> rentals =new ArrayList<>();
 
     public Vehicle(){}
-    public Vehicle ( String brand , String model , int year , double dailyRate , Status status){
+    public Vehicle ( String brand , String model , int year , double dailyRate , Status status , String targa){
         this.brand=brand;
         this.model=model;
         this.year=year;
         this.dailyRate=dailyRate;
         this.status=status;
+        this.targa=targa;
 
     }
 
@@ -86,6 +88,14 @@ import java.util.List;
 
     public void setRentals(List<Rental> rentals) {
         this.rentals = rentals;
+    }
+
+    public String getTarga() {
+        return targa;
+    }
+
+    public void setTarga(String targa) {
+        this.targa = targa;
     }
 }
 
