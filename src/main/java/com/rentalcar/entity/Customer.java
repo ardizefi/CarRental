@@ -17,8 +17,8 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rental> rentals  = new ArrayList<>();
-    public Customer(){
-    }
+    public Customer(){}
+
     @OneToOne
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;

@@ -20,23 +20,21 @@ public class Rental {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicle;
 
     @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
     private List<Payment> payments=new ArrayList<>();
-    public Rental(){}
 
-    @ManyToOne
-    @JoinColumn(name = "rentalItem_id")
-    private RentalItem rentalItem;
 
-    public Rental(LocalDate startDate, LocalDate endDate, Customer customer, Vehicle vehicle) {
+    @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RentalItem> rentalItems  = new ArrayList<>();
+    public Rental(){
+
+    }
+    public Rental(LocalDate startDate, LocalDate endDate, Customer customer) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.customer = customer;
-        this.vehicle = vehicle;
+
 
     }
 
@@ -70,14 +68,6 @@ public class Rental {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
     }
 
     public List<Payment> getPayments() {

@@ -17,16 +17,13 @@ public class Inventory {
     @JoinColumn(name = "vehichle_id")
     private Vehicle vehicle;
 
-    @OneToOne
-    @JoinColumn(name = "rental_id")
-    private Rental rental;
 
 
+public Inventory(){}
 
-
-    public Inventory (int stock , Rental rental1 , Vehicle vehicle1){
+    public Inventory (int stock , Vehicle vehicle1){
         this.stock=stock;
-        this.rental=rental1;
+
         this.vehicle=vehicle1;
 
     }
@@ -55,11 +52,6 @@ public class Inventory {
         this.vehicle = vehicle;
     }
 
-    public Rental getRental() {
-        return rental;
-    }
 
-    public void setRental(Rental rental) {
-        this.rental = rental;
-    }
+
 }

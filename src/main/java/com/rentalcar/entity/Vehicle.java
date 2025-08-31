@@ -20,8 +20,6 @@ import java.util.List;
         @Enumerated(EnumType.STRING)
         private Status status;
 
-        @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
-        private List<Rental> rentals =new ArrayList<>();
 
         @OneToOne
         @JoinColumn (name = "inventory_id" )
@@ -90,13 +88,7 @@ import java.util.List;
         this.status = status;
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
-    }
 
-    public void setRentals(List<Rental> rentals) {
-        this.rentals = rentals;
-    }
 
     public String getTarga() {
         return targa;

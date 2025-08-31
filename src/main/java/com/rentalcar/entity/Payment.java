@@ -17,6 +17,8 @@ public class Payment {
     @JoinColumn(name = "rental_id")
     private Rental rental;
 
+    public Payment(){}
+
     public Payment ( double amount , LocalDate paymentDate ,Rental rental ){
     this.amount=amount;
     this.paymentDate=paymentDate;

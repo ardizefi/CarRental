@@ -21,6 +21,8 @@ public class RentalItem {
     @JoinColumn(name = "rental_id")
     private Rental rental;
 
+    public RentalItem(){}
+
     public RentalItem(int days, Vehicle vehicle, Rental rental){
         this.days=days;
         this.vehicle=vehicle;

@@ -10,13 +10,16 @@ import org.hibernate.Transaction;
 public class RentalRespository {
 
     public void shtoRental (Rental r){
-        Transaction t=null;
-        try(Session s= HibernateUtil.getSessionFactory().openSession()){
-            t=s.beginTransaction();
-            s.save(r);
-            t.commit();
-        } catch(Exception e){
-            if(t!=null)t.rollback(); e.printStackTrace();
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.persist(r);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.getStatus().canRollback()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
         }
     }
     public Rental getByIdRental(Long id) {

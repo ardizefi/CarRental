@@ -2,6 +2,7 @@ package com.rentalcar;
 
 import com.rentalcar.entity.*;
 import com.rentalcar.respository.*;
+import com.rentalcar.service.RentalService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,7 +18,11 @@ public class Main {
         Customer c3 = new Customer("Bledi", "Krasniqi", "bledi.krasniqi@gmail.com");
         Customer c4 = new Customer("Jonida", "Shehu", "jonida.shehu@hotmail.com");
         CustomerRespository cr = new CustomerRespository();
-        //cr.shtoCustomer(c1);
+ //       cr.shtoCustomer(c1);
+//        cr.shtoCustomer(c2);
+//        cr.shtoCustomer(c3);
+//        cr.shtoCustomer(c4);
+
         //       cr.deleteCustomerById(1L);
 
 
@@ -29,43 +34,64 @@ public class Main {
         Vehicle v3 = new Vehicle("Ford", "Focus", 2018, 35, Status.RENTED, "AA345AB");
         Vehicle v4 = new Vehicle("BMW", "320i", 2020, 55, Status.MAINTENANCE , "AC567AB");
         VehicleRespository vr = new VehicleRespository();
-       // vr.shtoVehicle(v1);
+    //  vr.shtoVehicle(v1);
+//        vr.shtoVehicle(v2);
+//        vr.shtoVehicle(v3);
+//        vr.shtoVehicle(v4);
+
         //vr.deleteByIdVehicle(1L);
 
 
-
-        Rental r1 = new Rental(LocalDate.now().plusDays(2), LocalDate.now().plusDays(5) ,c1 ,v1);
-        Rental r2 = new Rental(LocalDate.now().minusDays(3), LocalDate.now().plusDays(3), c2, v2);
-        Rental r3 = new Rental(LocalDate.now().minusDays(12) , LocalDate.now().plusDays(1), c3 , v3);
-        Rental r4 = new Rental(LocalDate.now().minusDays(3) , LocalDate.now().plusDays(5), c4 , v4);
+//
+       Rental r1 = new Rental(LocalDate.now().plusDays(2), LocalDate.now().plusDays(5) ,c1 );
+//        Rental r2 = new Rental(LocalDate.now().minusDays(3), LocalDate.now().plusDays(3), c2);
+//        Rental r3 = new Rental(LocalDate.now().minusDays(12) , LocalDate.now().plusDays(1), c3);
+//        Rental r4 = new Rental(LocalDate.now().minusDays(3) , LocalDate.now().plusDays(5), c4 );
         RentalRespository rp = new RentalRespository();
-      //  rp.shtoRental(r1);
+       rp.shtoRental(r1);
+       //rp.shtoRental(r2);
+       // rp.shtoRental(r3);
+      // rp.shtoRental(r4);
+
         //rp.deleteByIdVRental(1L);
 
 
 
 
 
-        Payment p1 = new Payment(25 ,LocalDate.now() ,r1);
-        Payment p2 = new Payment(30 ,LocalDate.now() ,r2);
-        Payment p3 = new Payment(35 ,LocalDate.now() ,r3);
-        Payment p4 = new Payment(55 ,LocalDate.now() ,r4);
-        PaymentRespository pr = new PaymentRespository();
-       // pr.shtoPages(p1);
-        // pr.deleteByIdPayment(1L);
+//        Payment p1 = new Payment(25 ,LocalDate.now() ,r1);
+//        Payment p2 = new Payment(30 ,LocalDate.now() ,r2);
+//        Payment p3 = new Payment(35 ,LocalDate.now() ,r3);
+//        Payment p4 = new Payment(55 ,LocalDate.now() ,r4);
+//        PaymentRespository pr = new PaymentRespository();
+//        pr.shtoPages(p1);
+////        pr.shtoPages(p2);
+////        pr.shtoPages(p3);
+////        pr.shtoPages(p4);
+//        // pr.deleteByIdPayment(1L);
 
 
-        Inventory i1 = new Inventory(5 , r1 , v1);
-        Inventory i2 = new Inventory(3, r2 ,v2);
+        Inventory i1 = new Inventory(5  , v1);
+        Inventory i2 = new Inventory(3 ,v2);
         InventoryRepository inventoryRepository = new InventoryRepository();
-      //  inventoryRepository.shtoInventory(i2);
+       // inventoryRepository.shtoInventory(i1);
+       //inventoryRepository.shtoInventory(i2);
 
 
-        RentalItem rt1 = new RentalItem(7,v1,r1);
-        RentalItem rt2 = new RentalItem(10, v2,r2);
-        RentalItemRepository rt = new RentalItemRepository();
-     //   rt.shtoRentalItem(rt1);
 
+//        RentalItem rt1 = new RentalItem(7,v1,r1);
+//        RentalItem rt2 = new RentalItem(10, v2,r2);
+//        RentalItemRepository rt = new RentalItemRepository();
+//        rt.shtoRentalItem(rt1);
+////        rt.shtoRentalItem(rt2);
+
+
+        RentalService rentalService = new RentalService();
+        Long customerId = 1L;
+        Long vehicleId = 1L;
+        int days = 10;
+
+       // rentalService.rentVehicle(customerId, vehicleId, days);
 
 
     }
