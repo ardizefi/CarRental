@@ -23,6 +23,14 @@ import java.util.List;
         @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
         private List<Rental> rentals =new ArrayList<>();
 
+        @OneToOne
+        @JoinColumn (name = "inventory_id" )
+        private Inventory inventory;
+
+        @OneToOne
+        @JoinColumn (name="rentalItem_id")
+        private RentalItem rentalItem;
+
     public Vehicle(){}
     public Vehicle ( String brand , String model , int year , double dailyRate , Status status , String targa){
         this.brand=brand;

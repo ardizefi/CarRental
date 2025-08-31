@@ -27,6 +27,11 @@ public class Rental {
     @OneToMany(mappedBy = "rental", cascade = CascadeType.ALL)
     private List<Payment> payments=new ArrayList<>();
     public Rental(){}
+
+    @ManyToOne
+    @JoinColumn(name = "rentalItem_id")
+    private RentalItem rentalItem;
+
     public Rental(LocalDate startDate, LocalDate endDate, Customer customer, Vehicle vehicle) {
         this.startDate = startDate;
         this.endDate = endDate;

@@ -18,8 +18,10 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rental> rentals  = new ArrayList<>();
     public Customer(){
-
     }
+    @OneToOne
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
 
     public Customer ( String firstName , String lastName ,String email){
         this.firstName=firstName;

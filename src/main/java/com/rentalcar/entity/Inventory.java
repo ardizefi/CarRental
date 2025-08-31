@@ -13,11 +13,11 @@ public class Inventory {
 
     private int stock;
 
-    @OneToOne(mappedBy = "inventory", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "vehichle_id")
     private Vehicle vehicle;
 
-    @OneToOne(mappedBy = "inventory", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "rental_id")
     private Rental rental;
 

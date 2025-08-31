@@ -17,9 +17,7 @@ public class Main {
         Customer c3 = new Customer("Bledi", "Krasniqi", "bledi.krasniqi@gmail.com");
         Customer c4 = new Customer("Jonida", "Shehu", "jonida.shehu@hotmail.com");
         CustomerRespository cr = new CustomerRespository();
-        cr.shtoCustomer(c1);
-
-
+        //cr.shtoCustomer(c1);
         //       cr.deleteCustomerById(1L);
 
 
@@ -31,9 +29,7 @@ public class Main {
         Vehicle v3 = new Vehicle("Ford", "Focus", 2018, 35, Status.RENTED, "AA345AB");
         Vehicle v4 = new Vehicle("BMW", "320i", 2020, 55, Status.MAINTENANCE , "AC567AB");
         VehicleRespository vr = new VehicleRespository();
-        vr.shtoVehicle(v1);
-
-
+       // vr.shtoVehicle(v1);
         //vr.deleteByIdVehicle(1L);
 
 
@@ -43,9 +39,7 @@ public class Main {
         Rental r3 = new Rental(LocalDate.now().minusDays(12) , LocalDate.now().plusDays(1), c3 , v3);
         Rental r4 = new Rental(LocalDate.now().minusDays(3) , LocalDate.now().plusDays(5), c4 , v4);
         RentalRespository rp = new RentalRespository();
-        rp.shtoRental(r1);
-
-
+      //  rp.shtoRental(r1);
         //rp.deleteByIdVRental(1L);
 
 
@@ -57,13 +51,22 @@ public class Main {
         Payment p3 = new Payment(35 ,LocalDate.now() ,r3);
         Payment p4 = new Payment(55 ,LocalDate.now() ,r4);
         PaymentRespository pr = new PaymentRespository();
-        pr.shtoPages(p1);
+       // pr.shtoPages(p1);
         // pr.deleteByIdPayment(1L);
+
 
         Inventory i1 = new Inventory(5 , r1 , v1);
         Inventory i2 = new Inventory(3, r2 ,v2);
         InventoryRepository inventoryRepository = new InventoryRepository();
-        inventoryRepository.shtoInventory(i2);
+      //  inventoryRepository.shtoInventory(i2);
+
+
+        RentalItem rt1 = new RentalItem(7,v1,r1);
+        RentalItem rt2 = new RentalItem(10, v2,r2);
+        RentalItemRepository rt = new RentalItemRepository();
+     //   rt.shtoRentalItem(rt1);
+
+
 
     }
 

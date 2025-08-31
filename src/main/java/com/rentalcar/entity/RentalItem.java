@@ -2,6 +2,9 @@ package com.rentalcar.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class RentalItem {
     @Id
@@ -11,17 +14,18 @@ public class RentalItem {
     private int days;
 
     @OneToOne
-    @JoinColumn(name = "vehichle_id")
+    @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "rental_id")
     private Rental rental;
 
-    private RentalItem (int days , Vehicle vehicle1 , Rental rental1){
-        this.rental=rental1;
+    public RentalItem(int days, Vehicle vehicle, Rental rental){
         this.days=days;
-        this.vehicle=vehicle1;
+        this.vehicle=vehicle;
+        this.rental=rental;
+      ;
     }
 
     public int getDays() {
@@ -40,14 +44,6 @@ public class RentalItem {
         this.vehicle = vehicle;
     }
 
-    public Rental getRental() {
-        return rental;
-    }
-
-    public void setRental(Rental rental) {
-        this.rental = rental;
-    }
-
     public long getId() {
         return id;
     }
@@ -55,4 +51,7 @@ public class RentalItem {
     public void setId(long id) {
         this.id = id;
     }
+
+
+
 }
