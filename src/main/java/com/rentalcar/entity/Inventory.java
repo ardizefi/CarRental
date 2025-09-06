@@ -14,7 +14,7 @@ public class Inventory {
     private int stock;
 
     @OneToOne
-    @JoinColumn(name = "vehichle_id")
+    @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
 

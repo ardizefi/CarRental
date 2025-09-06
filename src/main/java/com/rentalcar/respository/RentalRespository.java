@@ -11,10 +11,12 @@ public class RentalRespository {
 
     public void shtoRental(Rental rental) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
 
-            session.persist(rental); // ose session.save(rental);
+            session.persist(rental);
 
             tx.commit();
             System.out.println("Rental u shtua me sukses: " + rental.getId());
@@ -22,8 +24,11 @@ public class RentalRespository {
             if (tx != null && tx.getStatus().canRollback()) {
                 tx.rollback();
             }
-            System.err.println("Gabim gjatë shtimit të rental: " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
     }
 

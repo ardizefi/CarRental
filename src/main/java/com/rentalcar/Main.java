@@ -59,12 +59,12 @@ public class Main {
 
 
 
-//        Payment p1 = new Payment(25 ,LocalDate.now() ,r1);
+          Payment p1 = new Payment(25 ,LocalDate.now() ,r1);
 //        Payment p2 = new Payment(30 ,LocalDate.now() ,r2);
 //        Payment p3 = new Payment(35 ,LocalDate.now() ,r3);
 //        Payment p4 = new Payment(55 ,LocalDate.now() ,r4);
-//        PaymentRespository pr = new PaymentRespository();
-//        pr.shtoPages(p1);
+          PaymentRespository pr = new PaymentRespository();
+          pr.shtoPages(p1);
 ////        pr.shtoPages(p2);
 ////        pr.shtoPages(p3);
 ////        pr.shtoPages(p4);
@@ -74,16 +74,16 @@ public class Main {
         Inventory i1 = new Inventory(5  , v1);
         Inventory i2 = new Inventory(3 ,v2);
         InventoryRepository inventoryRepository = new InventoryRepository();
-       // inventoryRepository.shtoInventory(i1);
+        inventoryRepository.shtoInventory(i1);
        //inventoryRepository.shtoInventory(i2);
 
 
 
-//        RentalItem rt1 = new RentalItem(7,v1,r1);
+          RentalItem rt1 = new RentalItem(7,v1,r1);
 //        RentalItem rt2 = new RentalItem(10, v2,r2);
-//        RentalItemRepository rt = new RentalItemRepository();
-//        rt.shtoRentalItem(rt1);
-////        rt.shtoRentalItem(rt2);
+          RentalItemRepository rt = new RentalItemRepository();
+          rt.shtoRentalItem(rt1);
+//        rt.shtoRentalItem(rt2);
 
 
         RentalService rentalService = new RentalService();

@@ -20,7 +20,9 @@ public class RentalService {
 
     public void rentVehicle(Long customerId, Long vehicleId, int days) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
 
             Customer customer = session.get(Customer.class, customerId);
@@ -39,7 +41,7 @@ public class RentalService {
                 session.persist(rental);
 
                 RentalItem item = new RentalItem(days, vehicle, rental);
-                session.persist(item);
+                session.persist(item); // NEW instance; do not reuse
 
                 vehicle.setStatus(Status.RENTED);
                 session.merge(vehicle);
@@ -58,6 +60,10 @@ public class RentalService {
                 tx.rollback();
             }
             e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
     }
 
