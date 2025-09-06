@@ -19,37 +19,48 @@ public class RentalService {
     //Dy metoda      voidmerr qera    void jep Qera
 
     public void rentVehicle(Long customerId, Long vehicleId, int days) {
+        Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction tx = session.beginTransaction();
+            tx = session.beginTransaction();
 
             Customer customer = session.get(Customer.class, customerId);
-
             Vehicle vehicle = session.get(Vehicle.class, vehicleId);
 
             Inventory inventory = session.createQuery(
-                    "FROM Inventory i WHERE i.vehicle.id = :vid", Inventory.class).setParameter("vid", vehicleId)
+                            "FROM Inventory i WHERE i.vehicle.id = :vid", Inventory.class)
+                    .setParameter("vid", vehicleId)
                     .getSingleResult();
-
 
             if (vehicle.getStatus() == Status.AVAILABLE && inventory.getStock() > 0) {
                 Rental rental = new Rental();
                 rental.setCustomer(customer);
                 rental.setStartDate(LocalDate.now());
                 rental.setEndDate(LocalDate.now().plusDays(days));
-                rentalRespository.shtoRental(rental); // përdorim repo për rental
+                session.persist(rental);
+
                 RentalItem item = new RentalItem(days, vehicle, rental);
-                rentalItemRepository.shtoRentalItem(item); // përdorim repo për rental item
+                session.persist(item);
+
                 vehicle.setStatus(Status.RENTED);
+                session.merge(vehicle);
+
                 inventory.setStock(inventory.getStock() - 1);
-                vehicleRespository.shtoVehicle(vehicle);
-                inventoryRepository.updateInventory(inventory);
+                session.merge(inventory);
+
                 System.out.println("Makinë u dha me qira!");
             } else {
                 System.out.println("Makinë jo në dispozicion!");
             }
+
             tx.commit();
+        } catch (Exception e) {
+            if (tx != null && tx.getStatus().canRollback()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
         }
     }
+
 
 //    public void returnVehicle(Long customerId, Long vehicleID, int day) {
 //        try (Session session = HibernateUtil.getSessionFactory().openSession()) {

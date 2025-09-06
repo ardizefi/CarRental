@@ -9,19 +9,24 @@ import org.hibernate.Transaction;
 
 public class RentalRespository {
 
-    public void shtoRental (Rental r){
+    public void shtoRental(Rental rental) {
         Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            session.persist(r);
+
+            session.persist(rental); // ose session.save(rental);
+
             tx.commit();
+            System.out.println("Rental u shtua me sukses: " + rental.getId());
         } catch (Exception e) {
             if (tx != null && tx.getStatus().canRollback()) {
                 tx.rollback();
             }
+            System.err.println("Gabim gjatë shtimit të rental: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
     public Rental getByIdRental(Long id) {
         Rental rental = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

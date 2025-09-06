@@ -18,7 +18,7 @@ public class Main {
         Customer c3 = new Customer("Bledi", "Krasniqi", "bledi.krasniqi@gmail.com");
         Customer c4 = new Customer("Jonida", "Shehu", "jonida.shehu@hotmail.com");
         CustomerRespository cr = new CustomerRespository();
- //       cr.shtoCustomer(c1);
+        cr.shtoCustomer(c1);
 //        cr.shtoCustomer(c2);
 //        cr.shtoCustomer(c3);
 //        cr.shtoCustomer(c4);
@@ -34,7 +34,7 @@ public class Main {
         Vehicle v3 = new Vehicle("Ford", "Focus", 2018, 35, Status.RENTED, "AA345AB");
         Vehicle v4 = new Vehicle("BMW", "320i", 2020, 55, Status.MAINTENANCE , "AC567AB");
         VehicleRespository vr = new VehicleRespository();
-    //  vr.shtoVehicle(v1);
+        vr.shtoVehicle(v1);
 //        vr.shtoVehicle(v2);
 //        vr.shtoVehicle(v3);
 //        vr.shtoVehicle(v4);
@@ -48,7 +48,7 @@ public class Main {
 //        Rental r3 = new Rental(LocalDate.now().minusDays(12) , LocalDate.now().plusDays(1), c3);
 //        Rental r4 = new Rental(LocalDate.now().minusDays(3) , LocalDate.now().plusDays(5), c4 );
         RentalRespository rp = new RentalRespository();
-       rp.shtoRental(r1);
+        rp.shtoRental(r1);
        //rp.shtoRental(r2);
        // rp.shtoRental(r3);
       // rp.shtoRental(r4);
@@ -87,14 +87,13 @@ public class Main {
 
 
         RentalService rentalService = new RentalService();
-        Long customerId = 1L;
-        Long vehicleId = 1L;
-        int days = 10;
-
-       // rentalService.rentVehicle(customerId, vehicleId, days);
-
+        rentalService.rentVehicle(1L, 1L, 5);
 
     }
+}
 
 
- }
+
+
+
+
